@@ -1,0 +1,9 @@
+rootProject.name = 'core'
+include 'module-common'
+include 'module-user'
+include 'module-notification'
+include 'module-common'
+include 'module-user'
+include 'module-notification'
+include 'module-auth'
+
