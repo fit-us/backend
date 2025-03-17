@@ -2,7 +2,10 @@ package com.fit_us.web.user.domain;
 
 import com.fit_us.web.common.entity.BaseEntity;
 import com.fit_us.web.common.utility.DateUtils;
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import lombok.*;
 
 import java.time.LocalDate;
@@ -39,7 +42,6 @@ public class Profile extends BaseEntity {
                 .bloodType(parsedBloodType)
                 .build();
     }
-
     /**
      * 생년월일
      * 성별

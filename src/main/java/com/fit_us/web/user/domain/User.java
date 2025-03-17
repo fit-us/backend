@@ -3,6 +3,11 @@ package com.fit_us.web.user.domain;
 import com.fit_us.web.common.entity.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.Filter;
+import org.hibernate.annotations.FilterDef;
+import org.hibernate.annotations.ParamDef;
+
+import java.time.LocalDateTime;
 
 /**
  * Oauth 기반으로
@@ -35,6 +40,10 @@ public class User extends BaseEntity {
     @OneToOne(fetch = FetchType.EAGER)
     private Profile profile;
 
+    @Builder.Default
+    @Column(nullable = true, name = "deleted_at")
+    private LocalDateTime deletedAt = null;
+
     public static User create(String name, String nickname, String oauthId, String provider, String email) {
         return builder()
                 .name(name)
@@ -49,5 +58,11 @@ public class User extends BaseEntity {
             throw new IllegalStateException("Profile already exists for this user.");
         }
         this.profile = profile;
+    }
+    public void delete() {
+        if (this.deletedAt != null) {
+            throw new IllegalStateException("User is already deleted.");
+        }
+        this.deletedAt = LocalDateTime.now();
     }
 }
