@@ -22,14 +22,11 @@ public class UserServiceImpl implements UserService{
         newUser.addProfile(newProfile);
         return userRepository.save(newUser);
     }
-
-    @Override
-    public User update(Long id) {
-        return null;
-    }
-
     @Override
     public void delete(Long id) {
+        User user = userRepository.findById(id)
+                .orElseThrow(()->new IllegalArgumentException("cannot found user"));
+        user.delete();
     }
     private User createUser(CreateUserCommand command) {
         if(command == null){

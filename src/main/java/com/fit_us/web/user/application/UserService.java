@@ -5,7 +5,6 @@ import com.fit_us.web.user.domain.User;
 
 public interface UserService {
     User create(CreateUserCommand command);
-    User update(Long id);
     void delete(Long id);
 
 }
